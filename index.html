@@ -1,0 +1,1426 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Awtorizei | Mockup PDV Fiscal</title>
+    <style>
+      :root {
+        --green-dark: #08523d;
+        --green: #17945e;
+        --green-soft: #e8f7ef;
+        --coral: #fd6e4e;
+        --warm: #fefaf2;
+        --white: #ffffff;
+        --ink: #111827;
+        --muted: #64748b;
+        --border: #e2e8f0;
+        --surface: #f8fafc;
+        --yellow: #e8a33d;
+        --red: #d1483a;
+        --gray: #8a8a85;
+        --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.05), 0 10px 24px rgba(15, 23, 42, 0.08);
+        --shadow-floating: 0 20px 50px rgba(8, 82, 61, 0.20);
+        font-family: Outfit, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: linear-gradient(180deg, var(--warm) 0%, #f4f7f2 100%);
+        color: var(--ink);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      button, input, select, textarea { font: inherit; }
+      button { cursor: pointer; }
+      .hidden { display: none !important; }
+
+      .logo {
+        align-items: center;
+        display: inline-flex;
+        gap: 12px;
+        min-width: 0;
+      }
+
+      .logo-mark {
+        align-items: center;
+        background: var(--green-dark);
+        border-radius: 14px;
+        color: var(--coral);
+        display: inline-grid;
+        font-size: 28px;
+        font-weight: 900;
+        height: 46px;
+        line-height: 1;
+        place-items: center;
+        width: 46px;
+      }
+
+      .logo-text {
+        color: var(--green-dark);
+        display: block;
+        font-size: 23px;
+        font-weight: 900;
+        letter-spacing: 0.03em;
+        line-height: 1;
+      }
+
+      .logo-o {
+        align-items: center;
+        border: 2px solid currentColor;
+        border-radius: 999px;
+        color: var(--coral);
+        display: inline-grid;
+        font-size: 0.72em;
+        height: 1.05em;
+        margin: 0 0.03em;
+        place-items: center;
+        width: 1.05em;
+      }
+
+      .logo-subtitle {
+        color: var(--muted);
+        display: block;
+        font-size: 11px;
+        font-weight: 700;
+        margin-top: 4px;
+      }
+
+      .login-screen {
+        background:
+          radial-gradient(circle at 78% 12%, rgba(253, 110, 78, 0.34), transparent 22rem),
+          radial-gradient(circle at 15% 85%, rgba(23, 148, 94, 0.22), transparent 26rem),
+          linear-gradient(135deg, var(--green-dark) 0 44%, var(--warm) 44.2% 100%);
+        display: grid;
+        min-height: 100vh;
+        padding: 28px;
+        place-items: center;
+      }
+
+      .login-panel {
+        display: grid;
+        gap: 22px;
+        grid-template-columns: minmax(280px, 460px) minmax(320px, 430px);
+        max-width: 980px;
+        width: 100%;
+      }
+
+      .login-hero {
+        color: #fff;
+        padding: 24px 10px;
+      }
+
+      .login-hero .logo-text,
+      .login-hero .logo-subtitle { color: #fff; }
+
+      .login-hero h1 {
+        font-size: clamp(36px, 5vw, 58px);
+        line-height: 0.95;
+        margin: 70px 0 16px;
+      }
+
+      .login-hero p {
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 18px;
+        line-height: 1.5;
+        margin: 0;
+        max-width: 420px;
+      }
+
+      .login-card,
+      .card,
+      .panel {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        box-shadow: var(--shadow-card);
+      }
+
+      .login-card {
+        padding: 30px;
+      }
+
+      .form-grid {
+        display: grid;
+        gap: 14px;
+      }
+
+      label {
+        color: #475569;
+        display: grid;
+        font-size: 13px;
+        font-weight: 700;
+        gap: 7px;
+      }
+
+      input, select, textarea {
+        background: #fff;
+        border: 1px solid #cbd5e1;
+        border-radius: 12px;
+        color: var(--ink);
+        min-height: 42px;
+        padding: 10px 12px;
+        width: 100%;
+      }
+
+      input:focus, select:focus, textarea:focus {
+        border-color: var(--green);
+        box-shadow: 0 0 0 3px rgba(23, 148, 94, 0.20);
+        outline: 0;
+      }
+
+      .btn {
+        align-items: center;
+        border: 0;
+        border-radius: 12px;
+        display: inline-flex;
+        font-weight: 800;
+        gap: 8px;
+        justify-content: center;
+        min-height: 40px;
+        padding: 10px 14px;
+        transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      }
+
+      .btn:hover { transform: translateY(-1px); }
+      .btn-primary { background: var(--green); box-shadow: 0 8px 18px rgba(23, 148, 94, 0.22); color: #fff; }
+      .btn-secondary { background: var(--green-dark); color: #fff; }
+      .btn-coral { background: var(--coral); box-shadow: 0 12px 24px rgba(253, 110, 78, 0.26); color: #fff; }
+      .btn-danger { background: var(--red); color: #fff; }
+      .btn-outline { background: #fff; border: 1px solid var(--border); color: var(--green-dark); }
+      .btn-full { width: 100%; }
+
+      .app-shell {
+        display: grid;
+        grid-template-columns: 288px minmax(0, 1fr);
+        min-height: 100vh;
+      }
+
+      .sidebar {
+        background: var(--green-dark);
+        border-right: 1px solid rgba(255, 255, 255, 0.12);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+      }
+
+      .sidebar-head {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 18px;
+      }
+
+      .sidebar .logo-mark {
+        background: #fff;
+        color: var(--coral);
+      }
+
+      .sidebar .logo-text,
+      .sidebar .logo-subtitle { color: #fff; }
+
+      .nav {
+        display: grid;
+        gap: 12px;
+        overflow: auto;
+        padding: 14px 12px;
+      }
+
+      .nav-section-title {
+        color: rgba(255, 255, 255, 0.58);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        padding: 8px 10px 2px;
+        text-transform: uppercase;
+      }
+
+      .nav-group { display: grid; gap: 5px; }
+
+      .nav button {
+        align-items: center;
+        background: transparent;
+        border: 1px solid transparent;
+        border-radius: 12px;
+        color: rgba(255, 255, 255, 0.82);
+        display: flex;
+        font-weight: 750;
+        gap: 10px;
+        padding: 11px 12px;
+        text-align: left;
+      }
+
+      .nav button:hover,
+      .nav button.active {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.18);
+        color: #fff;
+      }
+
+      .nav button.active .nav-icon {
+        background: var(--coral);
+        color: #fff;
+      }
+
+      .nav-icon {
+        align-items: center;
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 10px;
+        display: inline-grid;
+        height: 30px;
+        place-items: center;
+        width: 30px;
+      }
+
+      .sidebar-foot {
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        margin-top: auto;
+        padding: 14px;
+      }
+
+      .user-box {
+        align-items: center;
+        background: rgba(255, 255, 255, 0.10);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 14px;
+        display: flex;
+        gap: 10px;
+        padding: 12px;
+      }
+
+      .avatar {
+        align-items: center;
+        background: #fff;
+        border-radius: 50%;
+        color: var(--green-dark);
+        display: inline-grid;
+        font-weight: 900;
+        height: 38px;
+        place-items: center;
+        width: 38px;
+      }
+
+      .main {
+        background: linear-gradient(180deg, var(--warm) 0%, #f8fafc 100%);
+        min-width: 0;
+      }
+
+      .topbar {
+        align-items: center;
+        background: var(--green-dark);
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        min-height: 70px;
+        padding: 14px 24px;
+      }
+
+      .topbar h1 {
+        font-size: 22px;
+        margin: 0;
+      }
+
+      .topbar p {
+        color: rgba(255, 255, 255, 0.74);
+        font-size: 13px;
+        margin: 3px 0 0;
+      }
+
+      .page {
+        margin: 0 auto;
+        max-width: 1600px;
+        padding: 22px 24px 32px;
+      }
+
+      .page-header {
+        align-items: flex-start;
+        display: flex;
+        gap: 16px;
+        justify-content: space-between;
+        margin-bottom: 18px;
+      }
+
+      .page-header h2 {
+        font-size: 26px;
+        margin: 0;
+      }
+
+      .page-header p {
+        color: var(--muted);
+        margin: 6px 0 0;
+      }
+
+      .banner {
+        background: #fff8e8;
+        border: 1px solid rgba(232, 163, 61, 0.50);
+        border-left: 6px solid var(--yellow);
+        border-radius: 14px;
+        color: #7a4f13;
+        margin-bottom: 16px;
+        padding: 13px 16px;
+      }
+
+      .kpi-grid {
+        display: grid;
+        gap: 14px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .kpi-card {
+        padding: 16px;
+      }
+
+      .kpi-card small {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .kpi-card strong {
+        color: var(--green-dark);
+        display: block;
+        font-size: 26px;
+        margin-top: 6px;
+      }
+
+      .spark {
+        height: 42px;
+        margin-top: 12px;
+        width: 100%;
+      }
+
+      .grid-2 {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: minmax(0, 1.3fr) minmax(330px, 0.7fr);
+        margin-top: 16px;
+      }
+
+      .panel-header {
+        align-items: center;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        gap: 12px;
+        justify-content: space-between;
+        padding: 16px 18px;
+      }
+
+      .panel-header h3 { margin: 0; }
+      .panel-body { padding: 18px; }
+
+      .quick-grid,
+      .module-grid {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .shortcut {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        color: var(--ink);
+        display: grid;
+        gap: 12px;
+        min-height: 118px;
+        padding: 15px;
+        text-align: left;
+      }
+
+      .shortcut:hover {
+        background: var(--green-soft);
+        border-color: rgba(23, 148, 94, 0.35);
+      }
+
+      .shortcut .shortcut-icon {
+        align-items: center;
+        background: rgba(8, 82, 61, 0.10);
+        border-radius: 12px;
+        color: var(--green-dark);
+        display: inline-grid;
+        height: 42px;
+        place-items: center;
+        width: 42px;
+      }
+
+      .shortcut strong { color: var(--green-dark); }
+      .shortcut span { color: var(--muted); font-size: 13px; }
+
+      .table-tools {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: minmax(240px, 1fr) auto auto;
+        margin-bottom: 14px;
+      }
+
+      .table-wrap { overflow: auto; }
+
+      table {
+        border-collapse: collapse;
+        min-width: 850px;
+        width: 100%;
+      }
+
+      th, td {
+        border-bottom: 1px solid var(--border);
+        padding: 13px 14px;
+        text-align: left;
+        vertical-align: middle;
+      }
+
+      th {
+        background: #f8fafc;
+        color: #64748b;
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      td strong { color: var(--green-dark); }
+      tr.clickable:hover { background: var(--green-soft); cursor: pointer; }
+
+      .badge {
+        border-radius: 999px;
+        display: inline-flex;
+        font-size: 12px;
+        font-weight: 900;
+        padding: 6px 10px;
+        white-space: nowrap;
+      }
+
+      .ok, .autorizado { background: rgba(23, 148, 94, 0.13); color: var(--green); }
+      .pendente, .processando, .aguardando_retorno, .contingencia { background: rgba(232, 163, 61, 0.18); color: #9a6415; }
+      .rejeitado, .denegado, .erro { background: rgba(209, 72, 58, 0.13); color: var(--red); }
+      .cancelado, .inutilizado, .encerrado { background: rgba(138, 138, 133, 0.16); color: var(--gray); }
+
+      .pos-layout {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: minmax(0, 1fr) 410px;
+      }
+
+      .pos-left {
+        display: grid;
+        gap: 14px;
+      }
+
+      .category-grid {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .category-tile {
+        background: var(--green-dark);
+        border: 0;
+        border-radius: 10px;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 900;
+        min-height: 78px;
+        padding: 12px;
+        text-transform: uppercase;
+      }
+
+      .category-tile:nth-child(2n) { background: var(--green); }
+      .category-tile:nth-child(3n) { background: var(--coral); }
+      .category-tile:nth-child(4n) { background: #2f9fd8; }
+
+      .product-grid {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .product-card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
+        color: var(--ink);
+        display: grid;
+        gap: 7px;
+        min-height: 134px;
+        padding: 12px;
+        text-align: left;
+      }
+
+      .product-card:hover { border-color: rgba(23, 148, 94, 0.45); transform: translateY(-1px); }
+      .product-card strong { color: var(--green-dark); line-height: 1.15; }
+      .product-card span, .product-card small { color: var(--muted); font-size: 12px; }
+      .product-card b { color: var(--green-dark); font-size: 18px; }
+
+      .order-panel {
+        align-self: start;
+        position: sticky;
+        top: 88px;
+      }
+
+      .cart-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .cart-item {
+        align-items: center;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        display: grid;
+        gap: 10px;
+        grid-template-columns: minmax(0, 1fr) auto;
+        padding: 12px;
+      }
+
+      .cart-item span { color: var(--muted); font-size: 12px; }
+
+      .qty {
+        align-items: center;
+        display: inline-flex;
+        gap: 8px;
+      }
+
+      .qty button {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 9px;
+        color: var(--green-dark);
+        font-weight: 900;
+        height: 30px;
+        width: 30px;
+      }
+
+      .totals {
+        display: grid;
+        gap: 9px;
+        margin: 2px 0;
+      }
+
+      .totals div {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .totals dd {
+        font-weight: 900;
+        margin: 0;
+      }
+
+      .grand {
+        border-top: 1px solid var(--border);
+        color: var(--green-dark);
+        font-size: 24px;
+        padding-top: 12px;
+      }
+
+      .checkout-actions {
+        display: grid;
+        gap: 8px;
+        grid-template-columns: 0.7fr 0.85fr 1.35fr;
+      }
+
+      .spinner-row {
+        align-items: center;
+        color: var(--green-dark);
+        display: flex;
+        font-weight: 900;
+        gap: 10px;
+        grid-column: 1 / -1;
+        justify-content: center;
+        min-height: 44px;
+      }
+
+      .spinner {
+        animation: spin 0.8s linear infinite;
+        border: 3px solid rgba(23, 148, 94, 0.18);
+        border-radius: 50%;
+        border-top-color: var(--coral);
+        height: 26px;
+        width: 26px;
+      }
+
+      @keyframes spin { to { transform: rotate(360deg); } }
+
+      .success-card {
+        background: rgba(23, 148, 94, 0.10);
+        border: 1px solid rgba(23, 148, 94, 0.36);
+        border-radius: 14px;
+        color: var(--green-dark);
+        display: grid;
+        gap: 5px;
+        padding: 14px;
+      }
+
+      .state-grid {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .state-card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 14px;
+      }
+
+      .state-card h4 { color: var(--green-dark); margin: 12px 0 6px; }
+      .state-card p { color: var(--muted); font-size: 13px; margin: 0; }
+
+      .receipt {
+        background: #fff;
+        border: 2px dashed #cbd5e1;
+        border-radius: 14px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 13px;
+        line-height: 1.65;
+        padding: 16px;
+      }
+
+      .receipt-footer {
+        border-top: 1px dashed #cbd5e1;
+        color: var(--green);
+        font-weight: 900;
+        margin-top: 12px;
+        padding-top: 10px;
+        text-align: center;
+      }
+
+      .config-grid {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: minmax(0, 1fr) 370px;
+      }
+
+      .segmented {
+        background: var(--green-dark);
+        border-radius: 999px;
+        display: grid;
+        gap: 4px;
+        grid-template-columns: 1fr 1fr;
+        padding: 4px;
+      }
+
+      .segmented button {
+        background: transparent;
+        border: 0;
+        border-radius: 999px;
+        color: rgba(255, 255, 255, 0.74);
+        font-weight: 900;
+        padding: 10px;
+      }
+
+      .segmented button.active {
+        background: var(--coral);
+        color: #fff;
+      }
+
+      dialog {
+        border: 0;
+        border-radius: 16px;
+        box-shadow: var(--shadow-floating);
+        max-width: 680px;
+        padding: 0;
+        width: min(calc(100vw - 28px), 680px);
+      }
+
+      dialog::backdrop { background: rgba(8, 82, 61, 0.45); }
+
+      .modal-content { padding: 18px; }
+
+      .toast {
+        background: var(--green-dark);
+        border-left: 6px solid var(--coral);
+        border-radius: 12px;
+        bottom: 18px;
+        box-shadow: var(--shadow-floating);
+        color: #fff;
+        font-weight: 800;
+        opacity: 0;
+        padding: 14px 16px;
+        pointer-events: none;
+        position: fixed;
+        right: 18px;
+        transform: translateY(10px);
+        transition: 0.2s ease;
+      }
+
+      .toast.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 1150px) {
+        .app-shell, .pos-layout, .grid-2, .config-grid { grid-template-columns: 1fr; }
+        .sidebar { height: auto; position: static; }
+        .nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .order-panel { position: static; }
+        .kpi-grid, .quick-grid, .module-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .category-grid, .product-grid, .state-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+
+      @media (max-width: 700px) {
+        .login-panel, .table-tools, .checkout-actions { grid-template-columns: 1fr; }
+        .login-screen { background: var(--warm); padding: 16px; }
+        .login-hero { color: var(--green-dark); padding: 0; }
+        .login-hero .logo-text { color: var(--green-dark); }
+        .login-hero .logo-subtitle, .login-hero p { color: var(--muted); }
+        .login-hero h1 { margin-top: 28px; }
+        .topbar, .page-header { align-items: stretch; flex-direction: column; }
+        .page { padding: 16px; }
+        .kpi-grid, .quick-grid, .module-grid, .category-grid, .product-grid, .state-grid, .nav { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="login-screen" id="login-screen">
+      <div class="login-panel">
+        <div class="login-hero">
+          <div class="logo">
+            <span class="logo-mark">✓</span>
+            <span>
+              <span class="logo-text">AWT<span class="logo-o">✓</span>RIZEI</span>
+              <span class="logo-subtitle">PDV + motor fiscal 4Wave/Prowen</span>
+            </span>
+          </div>
+          <h1>Frente de caixa com fiscal no fluxo certo.</h1>
+          <p>Mockup funcional para discutir layout, carrinho, status fiscal, contingencia, XML, DANFE e configuracao antes da API real.</p>
+        </div>
+
+        <form class="login-card form-grid" id="login-form">
+          <div>
+            <h2 style="margin:0;color:var(--green-dark)">Entrar no Awtorizei</h2>
+            <p style="margin:6px 0 0;color:var(--muted)">Ambiente demonstrativo, sem dados reais.</p>
+          </div>
+          <label>Usuario
+            <input value="operador.demo@awtorizei.local" autocomplete="username" />
+          </label>
+          <label>Senha
+            <input type="password" value="mockup" autocomplete="current-password" />
+          </label>
+          <button class="btn btn-primary btn-full" type="submit">Entrar</button>
+        </form>
+      </div>
+    </section>
+
+    <div class="app-shell hidden" id="app-shell">
+      <aside class="sidebar">
+        <div class="sidebar-head">
+          <div class="logo">
+            <span class="logo-mark">✓</span>
+            <span>
+              <span class="logo-text">AWT<span class="logo-o">✓</span>RIZEI</span>
+              <span class="logo-subtitle">Painel operacional</span>
+            </span>
+          </div>
+        </div>
+        <nav class="nav" id="nav"></nav>
+        <div class="sidebar-foot">
+          <div class="user-box">
+            <span class="avatar">DT</span>
+            <span>
+              <strong>Daniel Tomasetto</strong><br />
+              <small>Administrador demo</small>
+            </span>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <h1 id="page-title">Dashboard</h1>
+            <p>Mockup navegavel, sem API, sem CNPJ real, sem certificado real.</p>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn btn-outline" id="toggle-contingency">Simular SEFAZ offline</button>
+            <span class="badge ok" id="sefaz-status">SEFAZ online</span>
+          </div>
+        </header>
+        <section class="page">
+          <div class="banner hidden" id="contingency-banner">
+            <strong>SEFAZ fora do ar.</strong> Modo contingencia ativo: vendas continuam normalmente e ficam aguardando transmissao.
+          </div>
+          <div id="view"></div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="modal">
+      <form method="dialog">
+        <div class="panel-header">
+          <div>
+            <h3 id="modal-title">Novo registro</h3>
+            <small style="color:var(--muted)">Cadastro salvo somente no mockup</small>
+          </div>
+          <button class="btn btn-outline" value="cancel">Fechar</button>
+        </div>
+        <div class="modal-content" id="modal-body"></div>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+      const money = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
+
+      const navGroups = [
+        ["Principal", [["dashboard", "Home", "⌂"], ["caixa", "Iniciar Vendas", "▣"]]],
+        ["Cadastros", [["produtos", "Produtos", "□"], ["clientes", "Clientes", "◇"], ["fornecedores", "Fornecedores", "▱"]]],
+        ["Operacao", [["historico", "Historico de Vendas", "≡"], ["estoque", "Estoque e Inventario", "▤"]]],
+        ["Fiscal", [["documento", "Fiscal NFC-e / NF-e", "☑"], ["config", "Configuracao Fiscal", "⚙"], ["contingencia", "Contingencia SEFAZ", "!"], ["inutilizacao", "Inutilizacao", "#"]]]
+      ];
+
+      const fiscalStates = [
+        ["pendente", "Pendente", "Aguardando entrada na fila fiscal."],
+        ["processando", "Processando", "XML em montagem e validacao local."],
+        ["aguardando_retorno", "Aguardando retorno", "Enviado para autorizadora, sem resposta final."],
+        ["contingencia", "Contingencia", "SEFAZ indisponivel, venda continua."],
+        ["autorizado", "Autorizado", "Documento autorizado e protocolado."],
+        ["rejeitado", "Rejeitado", "Precisa correcao antes de autorizar."],
+        ["denegado", "Denegado", "Uso fiscal bloqueado pela autorizadora."],
+        ["cancelado", "Cancelado", "Documento autorizado foi cancelado."],
+        ["inutilizado", "Inutilizado", "Numero fiscal inutilizado."],
+        ["encerrado", "Encerrado", "Documento de transporte encerrado."],
+        ["erro", "Erro", "Falha tecnica no fluxo local."]
+      ];
+
+      const categories = ["Semijoias", "Acessorios", "Presentes", "Promocoes", "Servicos", "Mais vendidos", "Lancamentos", "Fiscal rapido"];
+
+      const state = {
+        view: "dashboard",
+        sefazOnline: true,
+        environment: "Homologacao",
+        emitting: false,
+        lastSale: null,
+        selectedDocId: null,
+        products: [
+          { id: 1, sku: "1001", name: "Argola demo banho ouro", category: "Semijoias", price: 128.90, stock: 12 },
+          { id: 2, sku: "1002", name: "Colar ponto de luz demo", category: "Semijoias", price: 89.90, stock: 8 },
+          { id: 3, sku: "1003", name: "Anel regulavel demo", category: "Semijoias", price: 59.90, stock: 17 },
+          { id: 4, sku: "1004", name: "Pulseira masculina demo", category: "Acessorios", price: 149.90, stock: 5 },
+          { id: 5, sku: "1005", name: "Kit presente demo", category: "Presentes", price: 219.90, stock: 9 },
+          { id: 6, sku: "1006", name: "Brinco pequeno demo", category: "Promocoes", price: 39.90, stock: 24 },
+          { id: 7, sku: "1007", name: "Limpeza tecnica demo", category: "Servicos", price: 29.90, stock: 99 },
+          { id: 8, sku: "1008", name: "Tornozeleira demo", category: "Lancamentos", price: 74.90, stock: 11 }
+        ],
+        customers: [
+          { id: 1, name: "Consumidor final ficticio", doc: "CPF nao informado", phone: "(54) 90000-0000", type: "Consumidor" },
+          { id: 2, name: "Cliente Aurora Ficticia", doc: "123.456.789-00", phone: "(54) 90000-0001", type: "CPF ficticio" },
+          { id: 3, name: "Comercial Serra Demo Ltda", doc: "12.345.678/0001-99", phone: "(54) 90000-0002", type: "CNPJ ficticio" }
+        ],
+        suppliers: [
+          { id: 1, name: "Fornecedor Vitta Demo", doc: "23.456.789/0001-88", contact: "compras@demo.local" },
+          { id: 2, name: "Atacado Norte Ficticio", doc: "34.567.890/0001-77", contact: "fiscal@demo.local" }
+        ],
+        cart: [{ productId: 1, qty: 1 }],
+        stockLog: [
+          { item: "Argola demo banho ouro", qty: -1, source: "Venda NFC-e 000.478", when: "Hoje 10:21" },
+          { item: "Anel regulavel demo", qty: -2, source: "Venda NFC-e 000.480", when: "Ontem 18:02" }
+        ],
+        sales: []
+      };
+
+      function saleSeed(number, status, total, date) {
+        return {
+          id: "sale-" + number,
+          date,
+          customer: "Consumidor final ficticio",
+          total,
+          payment: "Pix",
+          doc: {
+            model: "NF-e",
+            series: "1",
+            number,
+            status,
+            key: "3526090000000000000055001000" + number.replace(".", "") + "00000000",
+            protocol: status === "autorizado" ? "135260000" + number.replace(".", "") : "SEM-PROTOCOLO-FICTICIO"
+          }
+        };
+      }
+
+      state.sales = [
+        saleSeed("000.478", "autorizado", 428.70, "2026-09-07"),
+        saleSeed("000.479", "rejeitado", 89.90, "2026-09-07"),
+        saleSeed("000.480", "contingencia", 238.80, "2026-09-06"),
+        saleSeed("000.481", "cancelado", 59.90, "2026-09-06")
+      ];
+
+      const $ = (selector) => document.querySelector(selector);
+
+      function toast(message) {
+        const el = $("#toast");
+        el.textContent = message;
+        el.classList.add("show");
+        clearTimeout(toast.timer);
+        toast.timer = setTimeout(() => el.classList.remove("show"), 2600);
+      }
+
+      function pageLabel(id) {
+        return navGroups.flatMap((group) => group[1]).find((item) => item[0] === id)?.[1] || "Awtorizei";
+      }
+
+      function setView(id) {
+        state.view = id;
+        $("#page-title").textContent = pageLabel(id);
+        renderNav();
+        render();
+      }
+
+      function renderNav() {
+        $("#nav").innerHTML = navGroups.map(([title, items]) => `
+          <div class="nav-group">
+            <div class="nav-section-title">${title}</div>
+            ${items.map(([id, label, icon]) => `
+              <button class="${state.view === id ? "active" : ""}" data-view="${id}">
+                <span class="nav-icon">${icon}</span><span>${label}</span>
+              </button>
+            `).join("")}
+          </div>
+        `).join("");
+      }
+
+      function statusLabel(status) {
+        return fiscalStates.find(([id]) => id === status)?.[1] || status;
+      }
+
+      function cartRows() {
+        return state.cart.map((line) => {
+          const product = state.products.find((item) => item.id === line.productId);
+          return { ...line, product, total: product.price * line.qty };
+        });
+      }
+
+      function cartTotal() {
+        return cartRows().reduce((sum, line) => sum + line.total, 0);
+      }
+
+      function pageHeader(title, description, action = "") {
+        return `
+          <header class="page-header">
+            <div>
+              <h2>${title}</h2>
+              <p>${description}</p>
+            </div>
+            ${action}
+          </header>
+        `;
+      }
+
+      function spark(color, values) {
+        const points = values.map((value, index) => `${index * 24 + 4},${42 - value}`).join(" ");
+        return `<svg class="spark" viewBox="0 0 170 44" preserveAspectRatio="none">
+          <polyline points="${points}" fill="none" stroke="${color}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></polyline>
+          <polygon points="${points} 168,44 4,44" fill="${color}" opacity="0.10"></polygon>
+        </svg>`;
+      }
+
+      function dashboardView() {
+        const sold = state.sales.filter((sale) => sale.date === "2026-09-07").reduce((sum, sale) => sum + sale.total, 0);
+        const authorized = state.sales.filter((sale) => sale.doc.status === "autorizado").length;
+        return `
+          ${pageHeader("Home", "Visao geral da operacao Awtorizei em tempo real simulado.", `<button class="btn btn-coral" data-go="caixa">Abrir frente de caixa</button>`)}
+          <section class="kpi-grid">
+            <article class="card kpi-card"><small>Vendido hoje</small><strong>${money.format(sold)}</strong>${spark("#17945E", [28,16,24,10,18,7,14])}</article>
+            <article class="card kpi-card"><small>Docs autorizados</small><strong>${authorized}</strong>${spark("#08523D", [34,25,18,22,12,14,8])}</article>
+            <article class="card kpi-card"><small>Pendencias fiscais</small><strong>2</strong>${spark("#E8A33D", [15,20,12,30,18,24,16])}</article>
+            <article class="card kpi-card"><small>Produtos ativos</small><strong>${state.products.length}</strong>${spark("#FD6E4E", [30,28,22,18,19,14,12])}</article>
+          </section>
+          <section class="panel" style="margin-top:16px">
+            <div class="panel-header"><h3>Acoes rapidas</h3><span class="badge ok">Mockup navegavel</span></div>
+            <div class="panel-body quick-grid">
+              ${[
+                ["caixa", "Iniciar Vendas", "Abrir caixa, montar carrinho e emitir fiscal", "▣"],
+                ["produtos", "Cadastro de Produto", "Buscar, listar e cadastrar item mock", "□"],
+                ["historico", "Historico de Vendas", "Consultar venda e documento fiscal", "≡"],
+                ["documento", "Fiscal NFC-e / NF-e", "Status, XML, DANFE e protocolo", "☑"]
+              ].map(([go, title, desc, icon]) => `<button class="shortcut" data-go="${go}"><span class="shortcut-icon">${icon}</span><strong>${title}</strong><span>${desc}</span></button>`).join("")}
+            </div>
+          </section>
+          <section class="panel" style="margin-top:16px">
+            <div class="panel-header"><h3>Gestao avancada</h3></div>
+            <div class="panel-body module-grid">
+              ${[
+                ["config", "Configuracao fiscal", "Certificado, CSC, series e ambiente"],
+                ["contingencia", "Painel de contingencia", "SEFAZ e documentos aguardando"],
+                ["inutilizacao", "Inutilizacao", "Registro de furo de numeracao"],
+                ["estoque", "Estoque e inventario", "Baixa apos venda simulada"]
+              ].map(([go, title, desc]) => `<button class="shortcut" data-go="${go}"><span class="shortcut-icon">✓</span><strong>${title}</strong><span>${desc}</span></button>`).join("")}
+            </div>
+          </section>
+        `;
+      }
+
+      function listView(kind, title, description, columns, rows) {
+        return `
+          ${pageHeader(title, description, `<button class="btn btn-primary" data-open-modal="${kind}">Novo cadastro</button>`)}
+          <section class="panel">
+            <div class="panel-body">
+              <div class="table-tools">
+                <input data-search="${kind}" placeholder="Buscar ${title.toLowerCase()}" />
+                <button class="btn btn-outline" data-clear-search>Limpar</button>
+                <button class="btn btn-secondary" data-open-modal="${kind}">Cadastrar</button>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr>${columns.map((col) => `<th>${col}</th>`).join("")}</tr></thead>
+                  <tbody>${rows}</tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        `;
+      }
+
+      function productsView(filter = "") {
+        const rows = state.products
+          .filter((item) => `${item.sku} ${item.name} ${item.category}`.toLowerCase().includes(filter.toLowerCase()))
+          .map((item) => `<tr><td><strong>${item.sku}</strong></td><td>${item.name}</td><td>${item.category}</td><td>${money.format(item.price)}</td><td>${item.stock}</td></tr>`)
+          .join("");
+        return listView("produto", "Produtos", "Tabela no padrao administrativo do Hórus, com dados ficticios.", ["Codigo", "Produto", "Categoria", "Preco", "Estoque"], rows);
+      }
+
+      function customersView(filter = "") {
+        const rows = state.customers
+          .filter((item) => `${item.name} ${item.doc} ${item.phone}`.toLowerCase().includes(filter.toLowerCase()))
+          .map((item) => `<tr><td><strong>${item.name}</strong></td><td>${item.doc}</td><td>${item.type}</td><td>${item.phone}</td></tr>`)
+          .join("");
+        return listView("cliente", "Clientes", "Cadastro com CPF/CNPJ ficticio, sem dados reais.", ["Nome", "Documento", "Tipo", "Telefone"], rows);
+      }
+
+      function suppliersView(filter = "") {
+        const rows = state.suppliers
+          .filter((item) => `${item.name} ${item.doc} ${item.contact}`.toLowerCase().includes(filter.toLowerCase()))
+          .map((item) => `<tr><td><strong>${item.name}</strong></td><td>${item.doc}</td><td>${item.contact}</td></tr>`)
+          .join("");
+        return listView("fornecedor", "Fornecedores", "Cadastro simples de fornecedores ficticios.", ["Nome", "Documento", "Contato"], rows);
+      }
+
+      function cashierView() {
+        const total = cartTotal();
+        return `
+          ${pageHeader("Iniciar Vendas", "Frente de caixa com produtos a esquerda e pedido fiscal a direita.", `<span class="badge ${state.sefazOnline ? "ok" : "contingencia"}">${state.sefazOnline ? "SEFAZ online" : "Contingencia ativa"}</span>`)}
+          <section class="pos-layout">
+            <div class="pos-left">
+              <section class="panel">
+                <div class="panel-header"><h3>Produtos e atalhos</h3><span class="badge pendente">NF-e pendente</span></div>
+                <div class="panel-body">
+                  <div class="table-tools" style="grid-template-columns:minmax(220px,1fr) auto">
+                    <input id="product-search" placeholder="Digite codigo 1001, 1002 ou nome do produto" />
+                    <button class="btn btn-primary" id="add-product">Adicionar</button>
+                  </div>
+                  <div class="category-grid">${categories.map((category) => `<button class="category-tile" data-category="${category}">${category}</button>`).join("")}</div>
+                </div>
+              </section>
+              <section class="product-grid">
+                ${state.products.map((item) => `<button class="product-card" data-product="${item.id}">
+                  <strong>${item.name}</strong>
+                  <span>${item.category} · ${item.sku}</span>
+                  <b>${money.format(item.price)}</b>
+                  <small>${item.stock} em estoque</small>
+                </button>`).join("")}
+              </section>
+            </div>
+            <aside class="panel order-panel">
+              <div class="panel-header"><h3>Pedido atual</h3><span class="badge pendente">Fiscal pendente</span></div>
+              <div class="panel-body form-grid">
+                <div class="cart-list">
+                  ${cartRows().map((line, index) => `<article class="cart-item">
+                    <div><strong>${line.product.name}</strong><br><span>${line.product.sku} · ${money.format(line.product.price)}</span></div>
+                    <div class="qty"><button data-dec="${index}">-</button><strong>${line.qty}</strong><button data-inc="${index}">+</button></div>
+                  </article>`).join("") || `<article class="cart-item"><strong>Nenhum item</strong><span>Toque em um produto para adicionar.</span></article>`}
+                </div>
+                <label>Cliente<select id="sale-customer">${state.customers.map((item) => `<option>${item.name}</option>`).join("")}</select></label>
+                <label>Forma de pagamento<select id="payment"><option>Pix</option><option>Credito</option><option>Debito</option><option>Dinheiro</option></select></label>
+                <label>Modelo fiscal<select id="doc-model"><option>NF-e</option><option>NFC-e</option><option>CT-e</option><option>MDF-e</option></select></label>
+                <dl class="totals">
+                  <div><dt>Subtotal</dt><dd>${money.format(total)}</dd></div>
+                  <div><dt>Tributos estimados</dt><dd>${money.format(total * 0.0925)}</dd></div>
+                  <div class="grand"><dt>Total</dt><dd>${money.format(total)}</dd></div>
+                </dl>
+                <div class="checkout-actions">
+                  <button class="btn btn-danger" data-clear-cart>Excluir</button>
+                  <button class="btn btn-secondary" data-placeholder="Pedido salvo apenas no mockup">Pedido</button>
+                  ${state.emitting ? `<div class="spinner-row"><span class="spinner"></span>Emitindo documento fiscal...</div>` : `<button class="btn btn-coral" id="finish-sale">Pagar e emitir</button>`}
+                </div>
+                ${state.lastSale ? `<div class="success-card"><strong>Venda ${state.lastSale.doc.status === "autorizado" ? "autorizada ✓" : "em contingencia"}</strong><span>${money.format(state.lastSale.total)} · ${state.lastSale.doc.model} ${state.lastSale.doc.number} emitida</span></div>` : ""}
+              </div>
+            </aside>
+          </section>
+        `;
+      }
+
+      function stockView() {
+        return `
+          ${pageHeader("Estoque e Inventario", "Baixa de estoque simulada apos finalizar venda.")}
+          <section class="grid-2">
+            <article class="panel"><div class="panel-header"><h3>Estoque atual</h3><span class="badge ok">Baixa mock</span></div><div class="panel-body table-wrap">
+              <table><thead><tr><th>Produto</th><th>Codigo</th><th>Estoque</th><th>Valor</th></tr></thead><tbody>
+              ${state.products.map((item) => `<tr><td><strong>${item.name}</strong></td><td>${item.sku}</td><td>${item.stock}</td><td>${money.format(item.price)}</td></tr>`).join("")}
+              </tbody></table>
+            </div></article>
+            <aside class="panel"><div class="panel-header"><h3>Ultimas baixas</h3></div><div class="panel-body cart-list">
+              ${state.stockLog.map((log) => `<article class="cart-item"><div><strong>${log.item}</strong><br><span>${log.qty} un · ${log.source}</span></div><small>${log.when}</small></article>`).join("")}
+            </div></aside>
+          </section>
+        `;
+      }
+
+      function historyView() {
+        return `
+          ${pageHeader("Historico de Vendas", "Clique em uma venda para abrir o status fiscal do documento.")}
+          <section class="panel"><div class="panel-body">
+            <div class="table-tools">
+              <input placeholder="Filtrar por cliente, status ou numero" data-history-filter />
+              <select><option>Status: todos</option><option>Autorizado</option><option>Rejeitado</option><option>Contingencia</option></select>
+              <input type="date" value="2026-09-07" />
+            </div>
+            <div class="table-wrap"><table><thead><tr><th>Data</th><th>Documento</th><th>Cliente</th><th>Total</th><th>Status</th><th>Acoes</th></tr></thead><tbody>
+              ${state.sales.map((sale) => `<tr class="clickable" data-doc="${sale.id}"><td>${sale.date}</td><td><strong>${sale.doc.model} ${sale.doc.number}</strong></td><td>${sale.customer}</td><td>${money.format(sale.total)}</td><td><span class="badge ${sale.doc.status}">${statusLabel(sale.doc.status)}</span></td><td><button class="btn btn-outline" data-placeholder="DANFE ficticio">DANFE</button> <button class="btn btn-outline" data-placeholder="XML ficticio">XML</button></td></tr>`).join("")}
+            </tbody></table></div>
+          </div></section>
+        `;
+      }
+
+      function selectedSale() {
+        return state.sales.find((sale) => sale.id === state.selectedDocId) || state.sales[0];
+      }
+
+      function documentView() {
+        const sale = selectedSale();
+        return `
+          ${pageHeader("Fiscal NFC-e / NF-e", "Mapa de status fiscal, chave, protocolo, XML e DANFE mockados.")}
+          <section class="grid-2">
+            <article class="panel"><div class="panel-header"><h3>11 estados do documento</h3></div><div class="panel-body state-grid">
+              ${fiscalStates.map(([id, label, desc]) => `<article class="state-card"><span class="badge ${id}">${label}</span><h4>${id}</h4><p>${desc}</p></article>`).join("")}
+            </div></article>
+            <aside class="panel"><div class="panel-header"><h3>Documento selecionado</h3><span class="badge ${sale.doc.status}">${statusLabel(sale.doc.status)}</span></div><div class="panel-body form-grid">
+              <div class="receipt">
+                <strong>AWTORIZEI FISCAL</strong><br>
+                Modelo: ${sale.doc.model}<br>
+                Serie: ${sale.doc.series}<br>
+                Numero: ${sale.doc.number}<br>
+                Chave: ${sale.doc.key}<br>
+                Protocolo: ${sale.doc.protocol}<br>
+                Total: ${money.format(sale.total)}
+                <div class="receipt-footer">✓ NF-e AUTORIZADA</div>
+              </div>
+              <button class="btn btn-primary" data-placeholder="XML ficticio exibido">Ver XML</button>
+              <button class="btn btn-secondary" data-placeholder="DANFE ficticio exibido">Ver DANFE</button>
+              <button class="btn btn-outline" data-placeholder="Carta de correcao simulada">Carta de correcao</button>
+              <button class="btn btn-danger" data-placeholder="Cancelamento apenas visual">Cancelar documento</button>
+            </div></aside>
+          </section>
+        `;
+      }
+
+      function configView() {
+        return `
+          ${pageHeader("Configuracao Fiscal", "Certificado A1, CSC, series e ambiente por CNPJ separado.")}
+          <section class="config-grid">
+            <article class="panel"><div class="panel-header"><h3>Cadastro fiscal da empresa</h3><span class="badge pendente">Dados ficticios</span></div><div class="panel-body form-grid">
+              <label>Apelido do cadastro fiscal<input value="Matriz demo - documento ficticio" /></label>
+              <label>CNPJ ficticio<input value="00.000.000/0001-00" /></label>
+              <label>Inscricao Estadual ficticia<input value="000/0000000" /></label>
+              <label>Regime tributario<select><option>Simples Nacional</option><option>Lucro Presumido</option><option>Lucro Real</option></select></label>
+              <label>Certificado A1 mock<input type="file" accept=".pfx,.p12" /></label>
+              <p style="color:var(--muted);margin:0">Cada CNPJ, matriz ou filial, deve ter cadastro separado. Quando o certificado permitir, o mesmo arquivo A1 pode ser selecionado nos dois cadastros.</p>
+              <label>CSC / token ficticio<input type="password" value="token-ficticio-nao-real" /></label>
+              <button class="btn btn-primary" data-placeholder="Configuracao salva apenas no mockup">Salvar configuracao</button>
+            </div></article>
+            <aside class="panel"><div class="panel-header"><h3>Ambiente</h3></div><div class="panel-body form-grid">
+              <div class="segmented">
+                <button class="${state.environment === "Homologacao" ? "active" : ""}" data-env="Homologacao">Homologacao</button>
+                <button class="${state.environment === "Producao" ? "active" : ""}" data-env="Producao">Producao</button>
+              </div>
+              <label>Serie NF-e<input value="1" /></label>
+              <label>Serie NFC-e<input value="2" /></label>
+              <label>Proximo numero<input value="000.482" /></label>
+            </div></aside>
+          </section>
+        `;
+      }
+
+      function contingencyView() {
+        const pending = state.sales.filter((sale) => sale.doc.status === "contingencia");
+        return `
+          ${pageHeader("Painel de Contingencia SEFAZ", "Acompanhamento de disponibilidade e documentos aguardando transmissao.", `<button class="btn btn-outline" id="toggle-contingency-copy">${state.sefazOnline ? "Simular offline" : "Voltar online"}</button>`)}
+          <section class="grid-2">
+            <article class="card kpi-card"><small>Status SEFAZ</small><strong>${state.sefazOnline ? "Online" : "Offline"}</strong><p style="color:var(--muted)">Indicador mockado para discutir comportamento visual.</p></article>
+            <article class="card kpi-card"><small>Notas em contingencia</small><strong>${pending.length}</strong><p style="color:var(--muted)">Aguardando transmissao quando a SEFAZ voltar.</p></article>
+          </section>
+          <section class="panel" style="margin-top:16px"><div class="panel-header"><h3>Aguardando transmissao</h3><span class="badge contingencia">Atencao</span></div><div class="panel-body table-wrap">
+            <table><thead><tr><th>Documento</th><th>Data</th><th>Cliente</th><th>Total</th><th>Status</th></tr></thead><tbody>
+              ${pending.map((sale) => `<tr><td><strong>${sale.doc.model} ${sale.doc.number}</strong></td><td>${sale.date}</td><td>${sale.customer}</td><td>${money.format(sale.total)}</td><td><span class="badge contingencia">Contingencia</span></td></tr>`).join("") || `<tr><td colspan="5">Nenhuma nota aguardando no mockup.</td></tr>`}
+            </tbody></table>
+          </div></section>
+        `;
+      }
+
+      function inutilizationView() {
+        return `
+          ${pageHeader("Inutilizacao de Numeracao", "Tela simples para registrar furo de numeracao fiscal.")}
+          <section class="panel"><div class="panel-body form-grid">
+            <label>Modelo fiscal<select><option>NF-e</option><option>NFC-e</option><option>CT-e</option><option>MDF-e</option></select></label>
+            <label>Serie<input value="1" /></label>
+            <label>Numero inicial<input value="000.482" /></label>
+            <label>Numero final<input value="000.482" /></label>
+            <label>Justificativa<textarea>Furo de numeracao em ambiente demonstrativo.</textarea></label>
+            <button class="btn btn-primary" data-placeholder="Inutilizacao registrada apenas no mockup">Registrar inutilizacao</button>
+          </div></section>
+        `;
+      }
+
+      function render() {
+        $("#sefaz-status").textContent = state.sefazOnline ? "SEFAZ online" : "SEFAZ offline";
+        $("#sefaz-status").className = `badge ${state.sefazOnline ? "ok" : "contingencia"}`;
+        $("#toggle-contingency").textContent = state.sefazOnline ? "Simular SEFAZ offline" : "Voltar SEFAZ online";
+        $("#contingency-banner").classList.toggle("hidden", state.sefazOnline);
+
+        const views = {
+          dashboard: dashboardView,
+          caixa: cashierView,
+          produtos: productsView,
+          clientes: customersView,
+          fornecedores: suppliersView,
+          estoque: stockView,
+          historico: historyView,
+          documento: documentView,
+          config: configView,
+          contingencia: contingencyView,
+          inutilizacao: inutilizationView
+        };
+        $("#view").innerHTML = views[state.view]();
+        bindEvents();
+      }
+
+      function openModal(kind) {
+        const configs = {
+          produto: ["Novo produto", ["Codigo", "Nome do produto", "Categoria", "Preco", "Estoque"]],
+          cliente: ["Novo cliente", ["Nome", "CPF/CNPJ ficticio", "Telefone"]],
+          fornecedor: ["Novo fornecedor", ["Nome", "CNPJ ficticio", "Contato"]]
+        };
+        const [title, fields] = configs[kind];
+        $("#modal-title").textContent = title;
+        $("#modal-body").innerHTML = `<div class="form-grid">
+          ${fields.map((field, index) => `<label>${field}<input data-field="${index}" /></label>`).join("")}
+          <button class="btn btn-primary" type="button" id="save-modal" data-kind="${kind}">Salvar no mockup</button>
+        </div>`;
+        $("#modal").showModal();
+      }
+
+      function saveModal(kind) {
+        const values = [...document.querySelectorAll("[data-field]")].map((input) => input.value.trim());
+        if (kind === "produto") state.products.push({ id: Date.now(), sku: values[0] || "1999", name: values[1] || "Produto novo ficticio", category: values[2] || "Demo", price: Number(values[3] || 99.9), stock: Number(values[4] || 3) });
+        if (kind === "cliente") state.customers.push({ id: Date.now(), name: values[0] || "Cliente novo ficticio", doc: values[1] || "000.000.000-00", phone: values[2] || "(54) 90000-9999", type: "Documento ficticio" });
+        if (kind === "fornecedor") state.suppliers.push({ id: Date.now(), name: values[0] || "Fornecedor novo ficticio", doc: values[1] || "00.000.000/0001-00", contact: values[2] || "demo@local" });
+        $("#modal").close();
+        render();
+        toast("Cadastro salvo apenas no mockup.");
+      }
+
+      function addProductById(id) {
+        const product = state.products.find((item) => item.id === Number(id)) || state.products[0];
+        const line = state.cart.find((item) => item.productId === product.id);
+        if (line) line.qty += 1;
+        else state.cart.push({ productId: product.id, qty: 1 });
+        render();
+        toast(product.name + " adicionado.");
+      }
+
+      function addProductFromSearch() {
+        const query = ($("#product-search")?.value || "").toLowerCase().trim();
+        const product = state.products.find((item) => item.sku === query || item.name.toLowerCase().includes(query) || item.category.toLowerCase().includes(query)) || state.products[0];
+        addProductById(product.id);
+      }
+
+      function finishSale() {
+        if (!state.cart.length) return toast("Carrinho vazio.");
+        state.emitting = true;
+        state.lastSale = null;
+        render();
+        setTimeout(() => {
+          const total = cartTotal();
+          const number = "000." + String(482 + state.sales.length).padStart(3, "0");
+          const status = state.sefazOnline ? "autorizado" : "contingencia";
+          const sale = {
+            id: "sale-" + Date.now(),
+            date: new Date().toISOString().slice(0, 10),
+            customer: $("#sale-customer").value,
+            total,
+            payment: $("#payment").value,
+            doc: {
+              model: $("#doc-model").value,
+              series: "1",
+              number,
+              status,
+              key: "3526090000000000000055001000" + number.replace(".", "") + "00000000",
+              protocol: state.sefazOnline ? "135260000" + number.replace(".", "") : "PROTOCOLO-CONTINGENCIA-FICTICIO"
+            }
+          };
+          cartRows().forEach((line) => {
+            line.product.stock = Math.max(0, line.product.stock - line.qty);
+            state.stockLog.unshift({ item: line.product.name, qty: -line.qty, source: `Venda ${sale.doc.model} ${sale.doc.number}`, when: "Agora" });
+          });
+          state.sales.unshift(sale);
+          state.selectedDocId = sale.id;
+          state.cart = [];
+          state.lastSale = sale;
+          state.emitting = false;
+          render();
+          toast(state.sefazOnline ? "Venda autorizada e estoque baixado." : "Venda em contingencia e estoque baixado.");
+        }, 2400);
+      }
+
+      function bindEvents() {
+        document.querySelectorAll("[data-go]").forEach((button) => button.addEventListener("click", () => setView(button.dataset.go)));
+        document.querySelectorAll("[data-open-modal]").forEach((button) => button.addEventListener("click", () => openModal(button.dataset.openModal)));
+        document.querySelectorAll("[data-search]").forEach((input) => input.addEventListener("input", () => {
+          if (input.dataset.search === "produto") $("#view").innerHTML = productsView(input.value);
+          if (input.dataset.search === "cliente") $("#view").innerHTML = customersView(input.value);
+          if (input.dataset.search === "fornecedor") $("#view").innerHTML = suppliersView(input.value);
+          bindEvents();
+        }));
+        document.querySelectorAll("[data-product]").forEach((button) => button.addEventListener("click", () => addProductById(button.dataset.product)));
+        document.querySelectorAll("[data-category]").forEach((button) => button.addEventListener("click", () => { $("#product-search").value = button.dataset.category; toast("Categoria selecionada: " + button.dataset.category); }));
+        document.querySelectorAll("[data-inc]").forEach((button) => button.addEventListener("click", () => { state.cart[Number(button.dataset.inc)].qty += 1; render(); }));
+        document.querySelectorAll("[data-dec]").forEach((button) => button.addEventListener("click", () => { state.cart[Number(button.dataset.dec)].qty = Math.max(1, state.cart[Number(button.dataset.dec)].qty - 1); render(); }));
+        document.querySelectorAll("[data-doc]").forEach((row) => row.addEventListener("click", () => { state.selectedDocId = row.dataset.doc; setView("documento"); }));
+        document.querySelectorAll("[data-env]").forEach((button) => button.addEventListener("click", () => { state.environment = button.dataset.env; render(); toast("Ambiente alterado para " + state.environment); }));
+        document.querySelectorAll("[data-placeholder]").forEach((button) => button.addEventListener("click", (event) => { event.stopPropagation(); toast(button.dataset.placeholder); }));
+        document.querySelectorAll("[data-clear-search]").forEach((button) => button.addEventListener("click", () => render()));
+        $("[data-clear-cart]")?.addEventListener("click", () => { state.cart = []; render(); toast("Carrinho limpo apenas no mockup."); });
+        $("#add-product")?.addEventListener("click", addProductFromSearch);
+        $("#product-search")?.addEventListener("keydown", (event) => { if (event.key === "Enter") addProductFromSearch(); });
+        $("#finish-sale")?.addEventListener("click", finishSale);
+        $("#save-modal")?.addEventListener("click", (event) => saveModal(event.currentTarget.dataset.kind));
+        $("#toggle-contingency-copy")?.addEventListener("click", () => { state.sefazOnline = !state.sefazOnline; render(); });
+      }
+
+      $("#login-form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        $("#login-screen").classList.add("hidden");
+        $("#app-shell").classList.remove("hidden");
+        renderNav();
+        render();
+      });
+
+      $("#nav").addEventListener("click", (event) => {
+        const button = event.target.closest("[data-view]");
+        if (button) setView(button.dataset.view);
+      });
+
+      $("#toggle-contingency").addEventListener("click", () => {
+        state.sefazOnline = !state.sefazOnline;
+        render();
+      });
+    </script>
+  </body>
+</html>
